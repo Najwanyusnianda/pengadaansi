@@ -52,7 +52,7 @@
               <li class="nav-item has-treeview ">
                 <a href="#" class="nav-link ">
                   
-                    <i class="nav-icon fa fa-edit"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                   <p>
                     Permintaan
                     <i class="right fa fa-angle-left"></i>
@@ -61,31 +61,48 @@
                 <ul class="nav nav-treeview">
              
                     <li class="nav-item">
-                        <a href="" class="nav-link ">
+                    <a href="{{route('permintaan.create')}}" class="nav-link ">
                           <i class="fas fa-circle-notch nav-icon" style="font-size: 15px;"></i>
-                          <p>Tambah Permintaan</p>
+                          <p>Entri Baru</p>
                         </a>
                     </li>  
                
                 
                   <li class="nav-item">
-                  <a href="" class="nav-link ">
+                  <a href="{{route('permintaan.index')}}" class="nav-link ">
                       <i class="fas fa-circle-notch nav-icon" style="font-size: 15px;"></i>
-                      <p>Daftar</p>
+                      <p>Permintaan Masuk</p>
                     </a>
                   </li>
-
-                  <li class="nav-item">
-                      <a href="" class="nav-link ">
-                          <i class="fas fa-circle-notch nav-icon" style="font-size: 15px;"></i>
-                          <p>Disposisi</p>
-                        </a>
-                      </li>
   
                 </ul>
               </li>
-          
-       
+
+
+                      
+              <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link ">
+                  
+                    <i class="nav-icon fa fa-edit"></i>
+                  <p>
+                    Disposisi
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+             
+                    <li class="nav-item">
+                    <a href="{{route('disposisi.index')}}" class="nav-link ">
+                          <i class="fas fa-circle-notch nav-icon" style="font-size: 15px;"></i>
+                          <p>Lihat Disposisi</p>
+                        </a>
+                    </li>  
+               
+            
+  
+                </ul>
+              </li>
+           
              
               <li class="nav-item">
               <a href="/logout" class="nav-link">

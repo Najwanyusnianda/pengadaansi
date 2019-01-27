@@ -12,7 +12,7 @@
 */
 
 //Auth route
-Route::get('/register', 'AuthController@getRegister' )->middleware('guest');
+Route::get('/register', 'AuthController@getRegister' )->name('register')->middleware('guest');
 Route::post('/register', 'AuthController@postRegister' )->name('post.register')->middleware('guest');
 
 Route::get('/login', 'AuthController@getLogin' )->name('login')->middleware('guest');
@@ -21,12 +21,18 @@ Route::post('/login', 'AuthController@postLogin' )->name('post.login')->middlewa
 Route::get('/logout','AuthController@logout')->name('logout')->middleware('auth');
 
 
+//
+Route::get('/bagian/login', 'AuthBagianController@getLogin')->name('bagian.login.get');
+Route::post('/bagian/login', 'AuthBagianController@postLogin')->name('bagian.login.post');
+Route::get('/bagian/logout', 'AuthBagianController@logout')->name('bagian.logout');
 
 
 
+
+###########################
 Route::group(['middleware' => ['auth']], function () {
     //home
-    Route::get('/dashboard','DashboardController@index')->name('dashboard')->middleware('auth');
+    Route::get('/dashboard','DashboardController@index')->name('dashboard');
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
@@ -36,4 +42,12 @@ Route::resource('/permintaan', 'PermintaanController');
 Route::get('table/permintaan','PermintaanController@dataTable')->name('table.permintaan');
 
  
+//disposisi
+Route::get('/disposisi','DisposisiController@index')->name('disposisi.index');
+Route::post('/disposisi/store','DisposisiController@store')->name('disposisi.store');
+Route::get('/disposisi/{disposisi}','DisposisiController@show')->name('disposisi.show');
+//
+
 });
+
+

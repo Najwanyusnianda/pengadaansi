@@ -1,1 +1,1 @@
-<button type="button"  data_id="{{$id}}" class="btn btn-block btn-outline-info btn-sm modal-show" >disposisi</button>
+<button type="button"  data_id="{{$id}}" class="btn btn-block btn-outline-info btn-sm modal-show" >disposisi <i class="fas fa-angle-double-right"></i></button>

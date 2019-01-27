@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Person;
 
 class AuthController extends Controller
 {
@@ -21,11 +22,18 @@ class AuthController extends Controller
         ]);
 
         $user=User::create([
-            'nama' =>$request->name,
-            'nip' => $request->nip,
+           
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role_id' => $request->role_id
+            'type' =>'user'
+            
+        ]);
+
+        $person=Person::create([
+            'nama' =>$request->name,
+            'nip' => $request->nip,
+            'role_id' => $request->role_id,
+            'user_id' => $user->id
         ]);
 
         return redirect()->route('login');
@@ -37,11 +45,14 @@ class AuthController extends Controller
 
     public function postLogin(Request $request){
         
+        
         if(!Auth::attempt(['username' => $request->username, 'password' => $request->password])){
             return redirect()->back();
         }
         return redirect()->route('dashboard');
     }
+
+  
 
     public function logout(){
         Auth::logout();

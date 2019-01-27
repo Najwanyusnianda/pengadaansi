@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    //alert('ready');
 
     $(function() {
         $('[data-toggle="tooltip"]').tooltip()
     });
+
 
 
     function postDisposisi(id_permintaan) {
@@ -15,8 +15,7 @@ $(document).ready(function() {
 
     $('body').on('click', '.modal-show', function(e) {
         var id = $(this).attr("data_id");
-        //alert(id);
-
+        console.log(id);
         $('.nota_modal').modal('show');
         return permintaan_id = id;
     });
@@ -35,7 +34,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: "{{route('disposisi.send')}}",
+            url: "/disposisi/store",
             data: {
                 // change data to this object
                 _token: $('meta[name="csrf-token"]').attr('content'),
@@ -45,12 +44,21 @@ $(document).ready(function() {
             },
             success: function(result) {
                 //console.log(result);
-
                 alert("Berhasil dikirim");
+                permintaanTable.ajax.reload();
                 $("#close").trigger("click");
             }
         });
 
 
     })
+
+
+
+    var disposisiDisabled = function() {
+        var x = $('span.badge-warning').parent().parent();
+        x = x.find('.modal-show');
+        x.prop('disabled', true);
+    }
+    disposisiDisabled();
 });

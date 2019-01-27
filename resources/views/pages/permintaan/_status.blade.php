@@ -1,0 +1,1 @@
+<span class="badge {{$status_badge}} mr-2">{{$status}}</span>

@@ -17,8 +17,6 @@ class CreateSubjectMattersTable extends Migration
             $table->string('kode_bagian')->primary();
             $table->string('nama_bagian');
             $table->string('kode_bagian_up');
-            $table->string('username')->unique()->nullable();
-            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

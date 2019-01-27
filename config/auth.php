@@ -45,6 +45,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'bagian' => [
+            'driver' => 'session',
+            'provider' => 'bagians',
+        ],
+
+        'bagian-api' => [
+            'driver' => 'token',
+            'provider' => 'bagians',
+        ],
     ],
 
     /*
@@ -68,6 +78,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'bagians' => [
+            'driver' => 'eloquent',
+            'model' => App\Bagian::class,
         ],
 
         // 'users' => [
@@ -96,6 +111,11 @@ return [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'bagians' => [
+            'provider' => 'bagians',
+            'table' => 'password_resets',
+            'expire' => 45,
         ],
     ],
 

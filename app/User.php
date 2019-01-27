@@ -15,7 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['nama','nip','username','password','role_id','is_active'];
+    protected $fillable = ['username','password','type'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -25,4 +25,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getCreatedAtAttribute()
+    {
+           
+    return Carbon::parse($this->attributes['created_at'])->format('d, M Y H:i');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
+    }
 }

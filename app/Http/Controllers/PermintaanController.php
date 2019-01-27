@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Permintaan;
+use App\User;
+use App\Person;
+use App\Bagian;
+
 use DataTables;
 
 class PermintaanController extends Controller
 {
     //
     public function index(){
+        $kasi=Person::where('role_id','=',5)->get();
+        if (count($kasi)> 0) {
+            return view('pages.permintaan.permintaan',compact('kasi'));
+        }
         return view('pages.permintaan.permintaan');
     }
 
@@ -34,8 +42,8 @@ class PermintaanController extends Controller
         $date_end=$date_explode[1];
         $date_end=trim($date_end);
 
-        //$user_id=auth()->user()->id;
-        //$user_sm=BagianSubject::where('user_id',$user_id)->first();
+        $user_id=auth()->user()->id;
+        $user_sm=Bagian::where('user_id',$user_id)->first();
         //$user_sm=BagianSubject::where('user_id',(int)$user_id)->first();
         //$user_sm=DB::table('bagian_subjects')->where('user_id',$user_id)->first();
         Permintaan::create([
@@ -51,7 +59,7 @@ class PermintaanController extends Controller
             'date_mulai'=>date('Y-m-d', strtotime($date_start)),
             'date_selesai'=>date('Y-m-d', strtotime($date_end)),
             'date_created_form'=>date('Y-m-d', strtotime($request->date_Form)),
-            //'kode_bagian'=>$user_sm->kode_bagian,
+            'nama_bagian' =>$user_sm->nama_bagian
              //$user_sm->kode_bagian
         ]);
         $request->session()->flash('success', 'Permintaan Berhasil ditambahkan');
@@ -70,8 +78,8 @@ class PermintaanController extends Controller
         $date_end=$date_explode[1];
         $date_end=trim($date_end);
 
-      //  $user_id=auth()->user()->id;
-        //$user_sm=BagianSubject::where('user_id',$user_id)->first();
+        $user_id=auth()->user()->id;
+        $user_sm=BagianSubject::where('user_id',$user_id)->first();
        
 
         $permintaan->update([
@@ -87,7 +95,7 @@ class PermintaanController extends Controller
             'date_mulai'=>date('Y-m-d', strtotime($date_start)),
             'date_selesai'=>date('Y-m-d', strtotime($date_end)),
             'date_created_form'=>date('Y-m-d', strtotime($request->date_Form)),
-            //'kode_bagian' =>$user_sm->kode_bagian
+            'nama_bagian' =>$user_sm->nama_bagian
         ]);
 
         return redirect()->route('permintaan.index');
@@ -118,6 +126,10 @@ class PermintaanController extends Controller
             return view('pages.permintaan._btnDisposisi',[
                 'id'=>$model->id
             ]);
-        })->addIndexColumn()->rawColumns(['action','disposisi'])->make(true);
+        })->addColumn('status',function($model){
+            return view('pages.permintaan._status',[
+                'status_badge'=>$model->disposisi_status ==  'baru' ? 'badge-danger' : ($model->disposisi_status == 'dikerjakan' ? 'badge-success' : 'badge-warning'),
+                'status'=> $model->disposisi_status
+            ]);})->addIndexColumn()->rawColumns(['action','disposisi','status'])->make(true);
     }
 }

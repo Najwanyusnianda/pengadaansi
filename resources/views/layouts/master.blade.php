@@ -112,8 +112,8 @@
     <!-- ./wrapper -->
     
     @yield('style')
-    <!-- REQUIRED SCRIPTS -->
-    <script src="{{asset('assets\fontawesome\js\all.js')}}"></script>
+    <!-- REQUIRED SCRIPTS 
+    <script src="{{asset('assets\fontawesome\js\all.js')}}"></script> -->
     
     <!-- jQuery -->
     <script src="{{asset('assets\bootstrap\jquery-3.3.1.min.js')}}"></script>

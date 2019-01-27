@@ -2,7 +2,7 @@
 @extends('layouts.master')
 
 @section('konten')
-<div class="container">
+<div class="container-fluid">
 
         <div class="card">
             <div class="card-header">
@@ -36,7 +36,7 @@
 
 @section('script')
     <script>
-           $('#permintaanDataTable').DataTable({
+    var permintaanTable=$('#permintaanDataTable').DataTable({
             responsive:true,
             processing:true,
             serverSide:true,
@@ -44,10 +44,10 @@
             columns:[
                 {data:'DT_RowIndex'},
                 {data:'judul'},
-                {data:'kode_bagian'},
+                {data:'nama_bagian'},
                 {data:'kode_kegiatan'},
                 {data:'anggaran'},
-                {data:'disposisi_status'},
+                {data:'status'},
                 {data:'disposisi'},
                 {data:'action'},
     
