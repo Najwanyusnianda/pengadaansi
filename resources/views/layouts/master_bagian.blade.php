@@ -6,7 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     
-        <title>lastemp</title>
+        <title>temp</title>
     
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="{{asset('assets\fontawesome\css\all.css')}}">
@@ -58,7 +58,7 @@
       
     
         <!-- Sidebar -->
-        @include('inc.navigation')
+        @include('inc.navigation_bagian')
         <!-- /.sidebar -->
         
         

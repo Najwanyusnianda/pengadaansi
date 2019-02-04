@@ -30,18 +30,35 @@
                     <span class="right badge badge-danger">New</span>
                   </p>
                 </a>
-              </li>     
+              </li>   
               <li class="nav-item has-treeview ">
                 <a href="#" class="nav-link ">
-                  <i class="nav-icon fa fa-dashboard"></i>
+                    <i class="nav-icon fas fa-keyboard"></i>
                   <p>
-                    Management
+                    Project Management
                     <i class="right fa fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                  <a href="" class="nav-link ">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p></p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link ">
+                    <i class="nav-icon fas fa-keyboard"></i>
+                  <p>
+                    User Management
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="{{route('user.management.index')}}" class="nav-link ">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>User</p>
                     </a>
@@ -54,18 +71,12 @@
                   
                     <i class="nav-icon fas fa-file-alt"></i>
                   <p>
-                    Permintaan
+                    Kelola Permintaan
                     <i class="right fa fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
              
-                    <li class="nav-item">
-                    <a href="{{route('permintaan.create')}}" class="nav-link ">
-                          <i class="fas fa-circle-notch nav-icon" style="font-size: 15px;"></i>
-                          <p>Entri Baru</p>
-                        </a>
-                    </li>  
                
                 
                   <li class="nav-item">
@@ -102,7 +113,42 @@
   
                 </ul>
               </li>
-           
+              
+              <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link ">
+                    <i class="nav-icon fas fa-keyboard"></i>
+                  <p>
+                    Monitoring
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="" class="nav-link ">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>User</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link ">
+                    <i class="nav-icon fas fa-keyboard"></i>
+                  <p>
+                    Arsip
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="" class="nav-link ">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>User</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
              
               <li class="nav-item">
               <a href="/logout" class="nav-link">

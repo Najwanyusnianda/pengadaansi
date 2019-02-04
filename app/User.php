@@ -26,6 +26,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function bagian()
+    {
+        return $this->hasOne('App\Bagian');
+    }
+
+    public function Person()
+    {
+        return $this->hasOne('App\Person');
+    }
+
     public function getCreatedAtAttribute()
     {
            

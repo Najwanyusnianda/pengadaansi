@@ -65,8 +65,14 @@ class DisposisiController extends Controller
     }
 
     public function show($id){
-        $disposisi=Disposisi::find($id);
-        return view('pages.disposis.disposisi_detail',compact('disposisi'));
+        //item: nama_penerima,nama_pengirim
+        $disposisi=DB::table('disposisis AS d')
+        ->where('d.id',$id)
+        ->join('people AS a','d.pengirim_id','=','a.id')
+        ->select('d.*','a.nama as nama_pengirim')
+        ->join('people AS b','d.penerima_id','=','b.id')
+        ->select('d.*','b.nama as nama_penerima','a.nama as nama_pengirim')->first();
+        return view('pages.disposisi.disposisi_detail',compact('disposisi'));
     }
 
     public function disposisiTable(){

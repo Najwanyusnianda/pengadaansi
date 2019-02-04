@@ -9,7 +9,7 @@
                     <h3 class="card-title">Data Table With Full Features </h3>
             </div>
             <div class="card-body">
-                    <table class="table table-hover dataTable" id="permintaanDataTable">
+                    <table class="table table-hover table-bordered  dataTable" id="permintaanDataTable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -19,7 +19,6 @@
                                     <th>Nilai</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
-                                    <th>Modify</th>
                                 </tr>
                             </thead>
                     </table>
@@ -44,13 +43,11 @@
             columns:[
                 {data:'DT_RowIndex'},
                 {data:'judul'},
-                {data:'nama_bagian'},
+                {data:'kode_bagian'},
                 {data:'kode_kegiatan'},
                 {data:'anggaran'},
                 {data:'status'},
                 {data:'disposisi'},
-                {data:'action'},
-    
             ]
         });
     </script>  

@@ -21,8 +21,22 @@ class PermintaanController extends Controller
         return view('pages.permintaan.permintaan');
     }
 
+    public function bagianIndex(){
+
+        if(auth()->user()->type!='bagian'){
+
+        return view('pages.permintaan.permintaan_bagian');
+        }
+        else{
+            $permintaan=Permintaan::where('kode_bagian',auth()->user()->bagian->kode_bagian)->get();
+            return view('pages.permintaan.permintaan_bagian',compact('permintaan'));
+            //database nama bagian->kode bagian
+          
+        }
+    }
+
     public function create(){
-        return view('pages.permintaan.permintaan_input');
+        return view('pages.permintaan.permintaan_entri');
     }
 
     public function edit(){
@@ -30,10 +44,12 @@ class PermintaanController extends Controller
     }
 
     public function show($id){
+
+        return view('pages.permintaan.permintaan_detail');
         
     }
 
-    public function store(Request $request){
+   /* public function store(Request $request){
 
         $date_range=$request->date_start;
         $date_explode=explode(' - ',$date_range);
@@ -60,6 +76,33 @@ class PermintaanController extends Controller
             'date_selesai'=>date('Y-m-d', strtotime($date_end)),
             'date_created_form'=>date('Y-m-d', strtotime($request->date_Form)),
             'nama_bagian' =>$user_sm->nama_bagian
+             //$user_sm->kode_bagian
+        ]);
+        $request->session()->flash('success', 'Permintaan Berhasil ditambahkan');
+        return redirect()->back();
+
+    }*/
+
+
+    public function store(Request $request){
+        $user_id=auth()->user()->id;
+        $user_sm=Bagian::where('user_id',$user_id)->first();
+        //$user_sm=BagianSubject::where('user_id',(int)$user_id)->first();
+        //$user_sm=DB::table('bagian_subjects')->where('user_id',$user_id)->first();
+        Permintaan::create([
+            'nomor_form'=>$request->form_kode,
+            'kode_kegiatan'=>$request->kode_Kegiatan,
+            'output'=>$request->Output,
+            'komponen'=>$request->Komponen,
+            'sub_komponen'=>$request->SubKomponen,
+            'grup_akun'=>$request->GrupAkun,
+            'judul'=>$request->JudulPermintaan,
+            'jenis_pengadaan'=>'$request->jenis_pengadaan',
+            'anggaran'=>(int)$request->JumlahAnggaran,
+            'date_mulai'=>date('Y-m-d', strtotime($request->date_mulai)),
+            'date_selesai'=>date('Y-m-d', strtotime($request->date_selesai)),
+            'date_created_form'=>date('Y-m-d', strtotime($request->date_Form)),
+            'kode_bagian' =>auth()->user()->bagian->kode_bagian
              //$user_sm->kode_bagian
         ]);
         $request->session()->flash('success', 'Permintaan Berhasil ditambahkan');
@@ -111,25 +154,19 @@ class PermintaanController extends Controller
         
     }
 
-
+    
     public function dataTable(){
        // $model=Permintaan::select('judul','kode_kegiatan','kode_bagian','anggaran')->get();
        $model=Permintaan::all();
-       return DataTables::of($model)->addColumn('action',function($model){
-            return view('pages.permintaan._action',[
-                'model' => $model,
-                'url_show' => route('permintaan.show',$model->id),
-                'url_edit' => route('permintaan.edit',$model->id),
-                'url_delete'=>route('permintaan.destroy',$model->id)
-            ]);
-        })->addColumn('disposisi',function($model){
+       return DataTables::of($model)->addColumn('disposisi',function($model){
             return view('pages.permintaan._btnDisposisi',[
-                'id'=>$model->id
+                'id'=>$model->id,
+                'url_show' => route('permintaan.show',$model->id),
             ]);
         })->addColumn('status',function($model){
             return view('pages.permintaan._status',[
                 'status_badge'=>$model->disposisi_status ==  'baru' ? 'badge-danger' : ($model->disposisi_status == 'dikerjakan' ? 'badge-success' : 'badge-warning'),
                 'status'=> $model->disposisi_status
-            ]);})->addIndexColumn()->rawColumns(['action','disposisi','status'])->make(true);
+            ]);})->addIndexColumn()->rawColumns(['disposisi','status'])->make(true);
     }
 }

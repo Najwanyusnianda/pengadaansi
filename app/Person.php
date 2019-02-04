@@ -8,4 +8,9 @@ class Person extends Model
 {
     //
     protected $fillable = ['nama','nip','user_id','role_id','is_active'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

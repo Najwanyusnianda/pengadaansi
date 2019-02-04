@@ -14,6 +14,7 @@ $(document).ready(function() {
     var permintaan_id = 0;
 
     $('body').on('click', '.modal-show', function(e) {
+        e.preventDefault();
         var id = $(this).attr("data_id");
         console.log(id);
         $('.nota_modal').modal('show');

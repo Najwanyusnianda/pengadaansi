@@ -37,16 +37,33 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect()->route('dashboard');
     });
 
-    //Permintaan
+//Permintaan
 Route::resource('/permintaan', 'PermintaanController');
+Route::get('/bagian/permintaan','PermintaanCOntroller@bagianIndex')->name('bagian.permintaan.index');
 Route::get('table/permintaan','PermintaanController@dataTable')->name('table.permintaan');
-
+Route::get('/permintaan_temp', function () {
+    return view('permintaan_temp');
+});
  
 //disposisi
 Route::get('/disposisi','DisposisiController@index')->name('disposisi.index');
 Route::post('/disposisi/store','DisposisiController@store')->name('disposisi.store');
 Route::get('/disposisi/{disposisi}','DisposisiController@show')->name('disposisi.show');
 //
+
+//jadwal
+Route::get('/jadwal_temp', function () { 
+    return view('pages.Jadwal_permintaan.jadwal_entri');
+});
+
+
+
+//bagian
+Route::get('/bagian/index','PagesBagianController@index')->name('bagian.index');
+
+
+//user
+Route::get('/management/user','UserManagementController@index')->name('user.management.index');
 
 });
 

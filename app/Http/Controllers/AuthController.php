@@ -43,13 +43,25 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(Request $request){
+    /*public function postLogin(Request $request){
         
         
         if(!Auth::attempt(['username' => $request->username, 'password' => $request->password])){
             return redirect()->back();
         }
         return redirect()->route('dashboard');
+    }*/
+
+    public function postLogin(Request $request){
+        
+        
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
+            if(auth()->user()->type=='bagian'){
+                return redirect()->route('bagian.index');
+            }
+            return redirect()->route('dashboard');
+        }
+        return redirect()->back();
     }
 
   
